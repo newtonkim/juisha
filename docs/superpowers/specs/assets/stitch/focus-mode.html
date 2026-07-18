@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Focus Mode - FocusFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "inverse-on-surface": "#f0f1f2",
+                "surface-container-high": "#e7e8e9",
+                "on-primary-fixed": "#002114",
+                "on-tertiary-fixed": "#092012",
+                "surface": "#f8f9fa",
+                "primary": "#012d1d",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#a5d0b9",
+                "on-error-container": "#93000a",
+                "surface-tint": "#3f6653",
+                "on-secondary-fixed-variant": "#005236",
+                "tertiary-fixed": "#cee9d3",
+                "error-container": "#ffdad6",
+                "surface-dim": "#d9dadb",
+                "on-tertiary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed-variant": "#354c3b",
+                "on-surface": "#191c1d",
+                "outline": "#717973",
+                "outline-variant": "#c1c8c2",
+                "primary-container": "#1b4332",
+                "surface-container-highest": "#e1e3e4",
+                "tertiary": "#152b1c",
+                "on-secondary-fixed": "#002113",
+                "secondary-fixed-dim": "#85d7ad",
+                "inverse-primary": "#a5d0b9",
+                "on-background": "#191c1d",
+                "primary-fixed": "#c1ecd4",
+                "on-secondary-container": "#19724f",
+                "secondary": "#0e6c4a",
+                "surface-container": "#edeeef",
+                "on-primary-fixed-variant": "#274e3d",
+                "background": "#f8f9fa",
+                "surface-variant": "#e1e3e4",
+                "inverse-surface": "#2e3132",
+                "tertiary-fixed-dim": "#b3cdb7",
+                "tertiary-container": "#2a4131",
+                "on-error": "#ffffff",
+                "on-tertiary-container": "#93ad98",
+                "surface-container-low": "#f3f4f5",
+                "on-primary-container": "#86af99",
+                "secondary-fixed": "#a0f4c8",
+                "surface-bright": "#f8f9fa",
+                "on-surface-variant": "#414844",
+                "secondary-container": "#a0f4c8"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "4px",
+                "lg": "24px",
+                "xs": "4px",
+                "margin-mobile": "16px",
+                "margin-desktop": "64px",
+                "md": "16px",
+                "gutter": "24px",
+                "sm": "8px",
+                "xl": "40px"
+        },
+        "fontFamily": {
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Manrope"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Manrope"
+                ],
+                "label-md": [
+                        "JetBrains Mono"
+                ],
+                "label-sm": [
+                        "JetBrains Mono"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-sm": [
+                        "Manrope"
+                ],
+                "headline-lg-mobile": [
+                        "Manrope"
+                ]
+        },
+        "fontSize": {
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "14px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "0",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "30px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .timer-glow {
+            box-shadow: 0 0 80px rgba(165, 208, 185, 0.25);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(165, 208, 185, 0.3); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(165, 208, 185, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(165, 208, 185, 0); }
+        }
+        .animate-pulse-ring {
+            animation: pulse-ring 3s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-hidden antialiased">
+<!-- Notification Banner -->
+<div class="absolute top-0 left-0 w-full bg-primary-container text-on-primary-container py-2 px-gutter flex justify-center items-center z-50 transform transition-transform duration-500 translate-y-0 shadow-sm backdrop-blur-md bg-opacity-90" id="notification-banner">
+<span class="material-symbols-outlined mr-2" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="font-label-md text-label-md">1 minute remaining in current focus session. Wrap up your thought.</span>
+<button class="ml-auto p-1 hover:bg-white/20 rounded-full transition-colors" onclick="document.getElementById('notification-banner').classList.add('-translate-y-full')">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center p-gutter relative w-full max-w-7xl mx-auto pt-16 mt-12">
+<!-- Background Ambient Ring -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+<div class="w-[600px] h-[600px] rounded-full border border-primary-container/20 animate-pulse-ring"></div>
+<div class="absolute w-[450px] h-[450px] rounded-full border border-primary-container/30 animate-[pulse-ring_4s_infinite_cubic-bezier(0.66,0,0,1)]"></div>
+</div>
+<!-- Timer Display -->
+<div class="relative z-10 flex flex-col items-center mb-12">
+<div class="w-80 h-80 rounded-full bg-surface-container-lowest border border-outline-variant flex items-center justify-center timer-glow relative">
+<!-- Circular Progress Track -->
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 320 320">
+<defs>
+<lineargradient id="timer-gradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#c1ecd4"></stop>
+<stop offset="100%" stop-color="#012d1d"></stop>
+</lineargradient>
+</defs>
+<circle class="stroke-surface-container-high" cx="160" cy="160" fill="none" r="156" stroke-width="4"></circle>
+<circle cx="160" cy="160" fill="none" r="156" stroke="url(#timer-gradient)" stroke-dasharray="980" stroke-dashoffset="30" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="text-center">
+<h1 class="font-headline-lg text-headline-lg md:text-[80px] md:leading-[88px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-fixed-dim tracking-tighter" style="font-variant-numeric: tabular-nums;">01:00</h1>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-2">Remaining</p>
+</div>
+</div>
+</div>
+<!-- Task Context -->
+<div class="text-center z-10 max-w-md w-full bg-surface-container-lowest p-6 rounded-xl border border-surface-container-highest shadow-[0px_10px_30px_rgba(0,0,0,0.05)] mb-12">
+<span class="inline-block px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md mb-3">Deep Work</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Draft Q3 Strategy Document</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Focus on the core OKRs and competitive analysis sections before the review meeting.</p>
+</div>
+<!-- Actions -->
+<div class="flex gap-6 z-10">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors text-on-surface font-label-md text-label-md border border-outline-variant">
+<span class="material-symbols-outlined">pause</span>
+                Pause
+            </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary-container hover:shadow-[0px_15px_45px_rgba(1,45,29,0.15)] transition-all text-on-primary font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Complete
+            </button>
+</div>
+<!-- Subtle Exit -->
+<button class="absolute bottom-gutter right-gutter flex items-center gap-2 px-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md opacity-50 hover:opacity-100 z-10">
+<span class="material-symbols-outlined text-sm">fullscreen_exit</span>
+            Exit Focus Mode
+        </button>
+</main>
+<script>
+        // Simple script to dismiss the banner automatically after 5 seconds for demonstration
+        setTimeout(() => {
+            const banner = document.getElementById('notification-banner');
+            if(banner) banner.classList.add('-translate-y-full');
+        }, 5000);
+    </script>
+</body></html>

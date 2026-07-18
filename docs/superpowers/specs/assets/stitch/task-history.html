@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FocusFlow - Task History</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "inverse-on-surface": "#f0f1f2",
+                "surface-container-high": "#e7e8e9",
+                "on-primary-fixed": "#002114",
+                "on-tertiary-fixed": "#092012",
+                "surface": "#f8f9fa",
+                "primary": "#012d1d",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#a5d0b9",
+                "on-error-container": "#93000a",
+                "surface-tint": "#3f6653",
+                "on-secondary-fixed-variant": "#005236",
+                "tertiary-fixed": "#cee9d3",
+                "error-container": "#ffdad6",
+                "surface-dim": "#d9dadb",
+                "on-tertiary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed-variant": "#354c3b",
+                "on-surface": "#191c1d",
+                "outline": "#717973",
+                "outline-variant": "#c1c8c2",
+                "primary-container": "#1b4332",
+                "surface-container-highest": "#e1e3e4",
+                "tertiary": "#152b1c",
+                "on-secondary-fixed": "#002113",
+                "secondary-fixed-dim": "#85d7ad",
+                "inverse-primary": "#a5d0b9",
+                "on-background": "#191c1d",
+                "primary-fixed": "#c1ecd4",
+                "on-secondary-container": "#19724f",
+                "secondary": "#0e6c4a",
+                "surface-container": "#edeeef",
+                "on-primary-fixed-variant": "#274e3d",
+                "background": "#f8f9fa",
+                "surface-variant": "#e1e3e4",
+                "inverse-surface": "#2e3132",
+                "tertiary-fixed-dim": "#b3cdb7",
+                "tertiary-container": "#2a4131",
+                "on-error": "#ffffff",
+                "on-tertiary-container": "#93ad98",
+                "surface-container-low": "#f3f4f5",
+                "on-primary-container": "#86af99",
+                "secondary-fixed": "#a0f4c8",
+                "surface-bright": "#f8f9fa",
+                "on-surface-variant": "#414844",
+                "secondary-container": "#a0f4c8"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "4px",
+                "lg": "24px",
+                "xs": "4px",
+                "margin-mobile": "16px",
+                "margin-desktop": "64px",
+                "md": "16px",
+                "gutter": "24px",
+                "sm": "8px",
+                "xl": "40px"
+        },
+        "fontFamily": {
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Manrope"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Manrope"
+                ],
+                "label-md": [
+                        "JetBrains Mono"
+                ],
+                "label-sm": [
+                        "JetBrains Mono"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-sm": [
+                        "Manrope"
+                ],
+                "headline-lg-mobile": [
+                        "Manrope"
+                ]
+        },
+        "fontSize": {
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "14px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "0",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "30px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Base styles */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Custom Scrollbar for minimalistic feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.surface-variant');
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline-variant');
+        }
+
+        /* Material Symbols utility */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md min-h-screen flex text-on-background">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-lowest shadow-md p-md gap-sm z-40">
+<!-- Header -->
+<div class="flex items-center gap-sm mb-lg">
+<img alt="Organization Logo" class="w-10 h-10 rounded-lg object-cover" data-alt="A minimalist, geometric logo mark for a productivity application, featuring deep indigo and clean white lines, evoking focus and structure. Designed in a flat, vector style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPeH7Ba1O7mv-vMVn9Zit8yTgUBFE4_j1KiUlz6GtzE6A_W4oByBh-QsDpsB4pZ_wF0x7qXPhgT0rE6uP_GPJVgkBui6SivU2Tw-t2YorzGT0VILIE_wJ4pRcptFFh5Dy9mRsaotVu4yAE8fMsQUHX6UpmlkDW5mu8-oDFIHPZhQ1vougnr7VCTvR1ppmS6Mc8ezeJA_i6w7eNLH3qNpyKni1-1v290_nRBiBVePsqK47pFR4MBOuxizBmtUg9f5d7oh9ILv2KTJLG"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary text-[20px] leading-tight">Focus Workspace</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Deep Work Session</p>
+</div>
+</div>
+<!-- Main Nav Tabs -->
+<div class="flex flex-col gap-xs flex-1">
+<!-- Active Tab: Tasks (Implied context for History) -->
+<a class="flex items-center gap-sm p-sm bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container rounded-xl font-semibold active:scale-98 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">checklist</span>
+<span class="font-headline-sm text-headline-sm text-[16px]">Tasks</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-headline-sm text-headline-sm text-[16px]">Categories</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined">timer</span>
+<span class="font-headline-sm text-headline-sm text-[16px]">Timer Settings</span>
+</a>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary font-headline-sm text-headline-sm text-[16px] py-sm rounded-lg shadow-sm hover:shadow-md transition-shadow active:scale-95 mb-md flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">add</span>
+            New Task
+        </button>
+<!-- Footer Tabs -->
+<div class="flex flex-col gap-xs pt-md border-t border-surface-variant">
+<a class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Help</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-xl hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 w-full min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm border-b border-surface-container-highest dark:border-outline-variant flex justify-between items-center px-gutter py-sm max-w-[1200px] mx-auto">
+<!-- Left Side: Brand (Mobile) or Search (Desktop) -->
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-on-surface hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="md:hidden font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary text-[24px]">FocusFlow</span>
+<!-- Desktop Global Search Structure (per JSON logic) -->
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-sm py-2 w-64 focus-within:ring-2 focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-body-md text-on-surface w-full p-0 focus:ring-0 placeholder:text-on-surface-variant" placeholder="Global Search..." type="text"/>
+</div>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full ml-2 object-cover border border-outline-variant" data-alt="A professional headshot of a person with a neutral, focused expression, lit with soft natural light, against a minimalist pale gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaK3qi8XI9jxLyolQbY2bs-fJMxRK45gi7HDgksOpsDDS7sdwBJOHC54RecNvzz99EUnXoMmfGT4NyH-KK-7NDRrPdY6lcUsOsdqK5XFZEbGRPu9Gx_cCbN-hfiyDeY7MF2pUJ8mFvyX79zheHkdYgx4sEauER7hodMuxFiXJLunoEFUKhx19QWACjqvGbfpLxSh8B-PwR9MBtOCAfFLOwXcejxTrnsQo5cGgHLN5bXckf4f6hIqjS2-uvwgB11RbtRj1zadq9cUYZ"/>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-md md:p-gutter max-w-[1200px] mx-auto w-full flex flex-col gap-lg">
+<!-- Page Header & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Task History</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Review and analyze your completed deep work sessions.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-on-surface font-headline-sm text-[14px] rounded-lg hover:bg-surface-container transition-colors active:scale-95 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-error font-headline-sm text-[14px] rounded-lg hover:bg-error-container hover:text-on-error-container transition-colors active:scale-95 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[18px]">archive</span>
+                        Archive All
+                    </button>
+</div>
+</div>
+<!-- Summary Stats (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-surface border border-outline-variant/50 rounded-xl p-md shadow-sm flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Completed This Week</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface text-[40px]">42</span>
+<span class="font-body-md text-body-md text-primary">+12%</span>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant/50 rounded-xl p-md shadow-sm flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Total Focus Time</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface text-[40px]">28<span class="text-[24px] text-on-surface-variant font-medium">h</span> 45<span class="text-[24px] text-on-surface-variant font-medium">m</span></span>
+</div>
+</div>
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-md shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<!-- Subtle background decoration -->
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[100px] text-primary/10 select-none">local_fire_department</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest relative z-10">Longest Streak</span>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-headline-lg text-headline-lg text-primary text-[40px]">7</span>
+<span class="font-body-md text-body-md text-primary">Days</span>
+</div>
+</div>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-col lg:flex-row gap-4 items-center bg-surface-container-lowest p-2 rounded-xl shadow-sm border border-outline-variant/30">
+<!-- Specific History Search -->
+<div class="flex-1 w-full flex items-center px-sm">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="w-full bg-transparent border-none outline-none text-body-md focus:ring-0 p-2 placeholder:text-on-surface-variant border-b border-transparent focus:border-primary transition-colors" placeholder="Search history..." type="text"/>
+</div>
+<!-- Divider -->
+<div class="hidden lg:block w-px h-8 bg-outline-variant/50"></div>
+<!-- Filters -->
+<div class="flex w-full lg:w-auto gap-2 px-2 overflow-x-auto pb-2 lg:pb-0 hide-scrollbar">
+<select class="bg-surface-container-low text-body-md text-on-surface border-none rounded-lg py-2 pl-3 pr-8 focus:ring-1 focus:ring-primary cursor-pointer text-sm">
+<option>All Categories</option>
+<option>Work</option>
+<option>Personal</option>
+<option>Learning</option>
+</select>
+<select class="bg-surface-container-low text-body-md text-on-surface border-none rounded-lg py-2 pl-3 pr-8 focus:ring-1 focus:ring-primary cursor-pointer text-sm">
+<option>Last 30 Days</option>
+<option>This Week</option>
+<option>This Month</option>
+<option>All Time</option>
+</select>
+<select class="bg-surface-container-low text-body-md text-on-surface border-none rounded-lg py-2 pl-3 pr-8 focus:ring-1 focus:ring-primary cursor-pointer text-sm">
+<option>All Priorities</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+</div>
+</div>
+<!-- Task List (Standardized vertical stack to favor whitespace) -->
+<div class="flex flex-col gap-3">
+<!-- Task Card 1 (High Priority) -->
+<div class="group bg-surface hover:bg-surface-container-lowest border border-outline-variant/40 hover:border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center transition-all hover:shadow-[0px_10px_30px_rgba(0,0,0,0.04)]">
+<!-- Checkbox representation (completed) -->
+<div class="flex-shrink-0 w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<!-- Core Info -->
+<div class="flex-1 flex flex-col gap-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<!-- Title with strikethrough and 50% opacity per guidelines -->
+<h3 class="font-headline-sm text-headline-sm text-[16px] text-on-surface line-through opacity-50 truncate">Finalize Q3 Marketing Strategy Deck</h3>
+<!-- Priority Badge -->
+<span class="font-label-sm text-label-sm bg-error/10 text-error px-2 py-0.5 rounded-full uppercase">High</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-sm font-label-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">folder</span> Work</span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span>Completed on Jul 16, 2026 at 4:30 PM</span>
+</div>
+</div>
+<!-- Duration -->
+<div class="flex-shrink-0 flex items-center gap-1 bg-surface-container px-3 py-1.5 rounded-lg text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+                        45m focused
+                    </div>
+</div>
+<!-- Task Card 2 (Medium Priority) -->
+<div class="group bg-surface hover:bg-surface-container-lowest border border-outline-variant/40 hover:border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center transition-all hover:shadow-[0px_10px_30px_rgba(0,0,0,0.04)]">
+<div class="flex-shrink-0 w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex-1 flex flex-col gap-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-[16px] text-on-surface line-through opacity-50 truncate">Code Review: Authentication Module</h3>
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full uppercase">Medium</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-sm font-label-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">folder</span> Development</span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span>Completed on Jul 15, 2026 at 11:15 AM</span>
+</div>
+</div>
+<div class="flex-shrink-0 flex items-center gap-1 bg-surface-container px-3 py-1.5 rounded-lg text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+                        1h 20m focused
+                    </div>
+</div>
+<!-- Task Card 3 (Low Priority) -->
+<div class="group bg-surface hover:bg-surface-container-lowest border border-outline-variant/40 hover:border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center transition-all hover:shadow-[0px_10px_30px_rgba(0,0,0,0.04)]">
+<div class="flex-shrink-0 w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex-1 flex flex-col gap-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-[16px] text-on-surface line-through opacity-50 truncate">Read Design System Guidelines</h3>
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase">Low</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-sm font-label-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">folder</span> Learning</span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span>Completed on Jul 14, 2026 at 9:00 AM</span>
+</div>
+</div>
+<div class="flex-shrink-0 flex items-center gap-1 bg-surface-container px-3 py-1.5 rounded-lg text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+                        30m focused
+                    </div>
+</div>
+<!-- Task Card 4 (Medium Priority) -->
+<div class="group bg-surface hover:bg-surface-container-lowest border border-outline-variant/40 hover:border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center transition-all hover:shadow-[0px_10px_30px_rgba(0,0,0,0.04)]">
+<div class="flex-shrink-0 w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex-1 flex flex-col gap-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-[16px] text-on-surface line-through opacity-50 truncate">Update Weekly Metrics Report</h3>
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full uppercase">Medium</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-sm font-label-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">folder</span> Admin</span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span>Completed on Jul 13, 2026 at 2:45 PM</span>
+</div>
+</div>
+<div class="flex-shrink-0 flex items-center gap-1 bg-surface-container px-3 py-1.5 rounded-lg text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+                        25m focused
+                    </div>
+</div>
+<!-- Load More Button -->
+<button class="mt-4 w-full py-3 rounded-lg border-2 border-dashed border-outline-variant/50 text-on-surface-variant hover:border-primary hover:text-primary transition-colors font-headline-sm text-[14px]">
+                    Load More History
+                </button>
+</div>
+</main>
+</div>
+<style>
+        /* Utility to hide scrollbar for horizontal filter scrolling but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>
