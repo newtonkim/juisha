@@ -425,7 +425,9 @@ return [
 git add app database tests && git commit -m "feat: domain models, migrations, factories"
 ```
 
----### Task 4: Task CRUD + inline categories (backend)
+---
+
+### Task 4: Task CRUD + inline categories (backend)
 
 **Files:**
 - Create: `app/Http/Controllers/TaskController.php`, `app/Http/Controllers/CategoryController.php`
