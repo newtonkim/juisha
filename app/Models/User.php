@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -46,5 +47,22 @@ class User extends Authenticatable implements PasskeyUser
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    public function tasks(): HasMany { return $this->hasMany(Task::class); }
+    public function categories(): HasMany { return $this->hasMany(Category::class); }
+    public function focusSessions(): HasMany { return $this->hasMany(FocusSession::class); }
+    public function preferences(): HasOne { return $this->hasOne(UserPreference::class); }
+    public function getOrCreatePreferences(): UserPreference
+    {
+        return $this->preferences()->firstOrCreate([], [
+            'focus_minutes' => 25,
+            'short_break_minutes' => 5,
+            'long_break_minutes' => 15,
+            'focus_tone' => 'soft-bell',
+            'break_tone' => 'upbeat-chime',
+            'browser_notifications' => true,
+            'zen_mode' => false,
+        ]);
     }
 }
