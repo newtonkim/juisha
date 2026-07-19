@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{FocusSession, Task};
 use Illuminate\Http\{RedirectResponse, Request};
+use Illuminate\Support\Facades\DB;
 
 class FocusSessionController extends Controller
 {
@@ -11,14 +12,16 @@ class FocusSessionController extends Controller
     {
         abort_unless($task->user_id === $request->user()->id, 403);
 
-        $request->user()->focusSessions()->whereNull('ended_at')->get()
-            ->each(fn (FocusSession $open) => $open->update([
-                'ended_at' => now(),
-                'duration_seconds' => min($open->started_at->diffInSeconds(now()), $open->task->session_minutes * 60),
-                'completed' => false,
-            ]));
+        DB::transaction(function () use ($request, $task) {
+            $request->user()->focusSessions()->whereNull('ended_at')->lockForUpdate()->get()
+                ->each(fn (FocusSession $open) => $open->update([
+                    'ended_at' => now(),
+                    'duration_seconds' => min($open->started_at->diffInSeconds(now()), $open->task->session_minutes * 60),
+                    'completed' => false,
+                ]));
 
-        $task->sessions()->create(['user_id' => $request->user()->id, 'started_at' => now()]);
+            $task->sessions()->create(['user_id' => $request->user()->id, 'started_at' => now()]);
+        });
 
         return redirect()->route('focus.show', $task);
     }
