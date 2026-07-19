@@ -41,3 +41,21 @@ test('focus page shows task and active session', function () {
     $this->actingAs($user)->get("/focus/{$task->id}")->assertOk();
     $this->actingAs(User::factory()->create())->get("/focus/{$task->id}")->assertForbidden();
 });
+
+test('database rejects a second open focus session for the same user', function () {
+    $user = User::factory()->create();
+    $task = Task::factory()->for($user)->create();
+
+    $task->sessions()->create([
+        'user_id' => $user->id,
+        'started_at' => now(),
+        'ended_at' => null,
+    ]);
+
+    expect(fn () => FocusSession::create([
+        'user_id' => $user->id,
+        'task_id' => $task->id,
+        'started_at' => now(),
+        'ended_at' => null,
+    ]))->toThrow(\Illuminate\Database\UniqueConstraintViolationException::class);
+});

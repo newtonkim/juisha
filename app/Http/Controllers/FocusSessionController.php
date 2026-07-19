@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{FocusSession, Task};
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\{RedirectResponse, Request};
 use Illuminate\Support\Facades\DB;
 
@@ -13,14 +14,18 @@ class FocusSessionController extends Controller
         abort_unless($task->user_id === $request->user()->id, 403);
 
         DB::transaction(function () use ($request, $task) {
-            $request->user()->focusSessions()->whereNull('ended_at')->lockForUpdate()->get()
+            $request->user()->focusSessions()->whereNull('ended_at')->get()
                 ->each(fn (FocusSession $open) => $open->update([
                     'ended_at' => now(),
                     'duration_seconds' => min($open->started_at->diffInSeconds(now()), $open->task->session_minutes * 60),
                     'completed' => false,
                 ]));
 
-            $task->sessions()->create(['user_id' => $request->user()->id, 'started_at' => now()]);
+            try {
+                $task->sessions()->create(['user_id' => $request->user()->id, 'started_at' => now()]);
+            } catch (UniqueConstraintViolationException) {
+                // Another request already opened a session for this user; let focus.show surface it.
+            }
         });
 
         return redirect()->route('focus.show', $task);
