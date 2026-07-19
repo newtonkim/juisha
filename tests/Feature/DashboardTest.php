@@ -1,27 +1,28 @@
 <?php
 
-namespace Tests\Feature;
+use App\Models\{Task, User};
+use Inertia\Testing\AssertableInertia as Assert;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+test('dashboard shows today tasks ordered pending-first with stats', function () {
+    $user = User::factory()->create();
+    Task::factory()->for($user)->completed()->create(['title' => 'Done one']);
+    Task::factory()->for($user)->create(['title' => 'High one', 'priority' => 'high']);
+    Task::factory()->for($user)->create(['title' => 'Low one', 'priority' => 'low']);
+    Task::factory()->for($user)->create(['created_at' => now()->subDays(2)]); // excluded
 
-class DashboardTest extends TestCase
-{
-    use RefreshDatabase;
+    $this->actingAs($user)->get('/dashboard')
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard')
+            ->has('tasks', 3)
+            ->where('tasks.0.title', 'High one')
+            ->where('tasks.2.title', 'Done one')
+            ->where('stats.total', 3)
+            ->where('stats.completed', 1)
+            ->has('categories')
+            ->where('focus_minutes', 25));
+});
 
-    public function test_guests_are_redirected_to_the_login_page()
-    {
-        $response = $this->get(route('dashboard'));
-        $response->assertRedirect(route('login'));
-    }
-
-    public function test_authenticated_users_can_visit_the_dashboard()
-    {
-        $user = User::factory()->create();
-        $this->actingAs($user);
-
-        $response = $this->get(route('dashboard'));
-        $response->assertOk();
-    }
-}
+test('guests are redirected to the login page', function () {
+    $this->get(route('dashboard'))->assertRedirect(route('login'));
+});

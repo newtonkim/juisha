@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\{CategoryController, TaskController};
+use App\Http\Controllers\{CategoryController, DashboardController, TaskController};
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {
