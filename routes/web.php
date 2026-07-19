@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CategoryController, DashboardController, TaskController};
+use App\Http\Controllers\{CategoryController, DashboardController, FocusController, FocusSessionController, TaskController};
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
@@ -15,6 +15,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/tasks/{task}/toggle', [TaskController::class, 'toggle'])->name('tasks.toggle');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+    Route::get('/focus/{task}', [FocusController::class, 'show'])->name('focus.show');
+    Route::post('/tasks/{task}/sessions', [FocusSessionController::class, 'store'])->name('sessions.store');
+    Route::patch('/sessions/{session}/finish', [FocusSessionController::class, 'finish'])->name('sessions.finish');
 });
 
 require __DIR__.'/settings.php';

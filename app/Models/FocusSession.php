@@ -10,7 +10,7 @@ class FocusSession extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['task_id', 'started_at', 'ended_at', 'duration_seconds', 'completed'];
+    protected $fillable = ['user_id', 'task_id', 'started_at', 'ended_at', 'duration_seconds', 'completed'];
 
     protected function casts(): array
     {
