@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CategoryController, DashboardController, FocusController, FocusSessionController, TaskController};
+use App\Http\Controllers\{CategoryController, DashboardController, FocusController, FocusSessionController, HistoryController, TaskController, TimerSettingsController};
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
@@ -19,6 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/focus/{task}', [FocusController::class, 'show'])->name('focus.show');
     Route::post('/tasks/{task}/sessions', [FocusSessionController::class, 'store'])->name('sessions.store');
     Route::patch('/sessions/{session}/finish', [FocusSessionController::class, 'finish'])->name('sessions.finish');
+
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+    Route::get('/settings/timer', [TimerSettingsController::class, 'edit'])->name('settings.timer.edit');
+    Route::patch('/settings/timer', [TimerSettingsController::class, 'update'])->name('settings.timer.update');
 });
 
 require __DIR__.'/settings.php';
