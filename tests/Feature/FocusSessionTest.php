@@ -1,6 +1,9 @@
 <?php
 
-use App\Models\{FocusSession, Task, User};
+use App\Models\FocusSession;
+use App\Models\Task;
+use App\Models\User;
+use Illuminate\Database\UniqueConstraintViolationException;
 
 test('starting a session closes any open one and creates a new row', function () {
     $user = User::factory()->create();
@@ -57,5 +60,5 @@ test('database rejects a second open focus session for the same user', function 
         'task_id' => $task->id,
         'started_at' => now(),
         'ended_at' => null,
-    ]))->toThrow(\Illuminate\Database\UniqueConstraintViolationException::class);
+    ]))->toThrow(UniqueConstraintViolationException::class);
 });

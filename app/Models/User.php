@@ -7,7 +7,8 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -49,10 +50,38 @@ class User extends Authenticatable implements PasskeyUser
         ];
     }
 
-    public function tasks(): HasMany { return $this->hasMany(Task::class); }
-    public function categories(): HasMany { return $this->hasMany(Category::class); }
-    public function focusSessions(): HasMany { return $this->hasMany(FocusSession::class); }
-    public function preferences(): HasOne { return $this->hasOne(UserPreference::class); }
+    /**
+     * @return HasMany<Task, $this>
+     */
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * @return HasMany<Category, $this>
+     */
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    /**
+     * @return HasMany<FocusSession, $this>
+     */
+    public function focusSessions(): HasMany
+    {
+        return $this->hasMany(FocusSession::class);
+    }
+
+    /**
+     * @return HasOne<UserPreference, $this>
+     */
+    public function preferences(): HasOne
+    {
+        return $this->hasOne(UserPreference::class);
+    }
+
     public function getOrCreatePreferences(): UserPreference
     {
         return $this->preferences()->firstOrCreate([], [

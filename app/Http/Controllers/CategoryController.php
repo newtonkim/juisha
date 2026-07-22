@@ -15,6 +15,7 @@ class CategoryController extends Controller
         ]);
 
         $request->user()->categories()->create($validated);
+
         return back();
     }
 }

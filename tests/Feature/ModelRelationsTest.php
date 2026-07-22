@@ -1,6 +1,10 @@
 <?php
 
-use App\Models\{Category, FocusSession, Task, User, UserPreference};
+use App\Models\Category;
+use App\Models\FocusSession;
+use App\Models\Task;
+use App\Models\User;
+use App\Models\UserPreference;
 
 test('task belongs to user and category and has sessions', function () {
     $user = User::factory()->create();

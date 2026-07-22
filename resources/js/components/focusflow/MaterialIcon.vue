@@ -2,5 +2,10 @@
 defineProps<{ name: string; fill?: boolean }>();
 </script>
 <template>
-  <span class="material-symbols-outlined select-none" :class="{ 'is-filled': fill }" aria-hidden="true">{{ name }}</span>
+    <span
+        class="material-symbols-outlined select-none"
+        :class="{ 'is-filled': fill }"
+        aria-hidden="true"
+        >{{ name }}</span
+    >
 </template>

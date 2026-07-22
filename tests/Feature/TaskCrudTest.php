@@ -1,6 +1,8 @@
 <?php
 
-use App\Models\{Category, Task, User};
+use App\Models\Category;
+use App\Models\Task;
+use App\Models\User;
 
 test('a user can create a task with all fields', function () {
     $user = User::factory()->create();

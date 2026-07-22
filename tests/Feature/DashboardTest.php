@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\{Task, User};
+use App\Models\Task;
+use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
 test('dashboard shows today tasks ordered pending-first with stats', function () {

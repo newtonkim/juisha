@@ -3,9 +3,13 @@
 namespace App\Services;
 
 use App\Models\User;
+use Carbon\CarbonInterface;
 
 class FocusStats
 {
+    /**
+     * @return array{completed: int, total: int, deep_work_seconds: int, focus_score: int}
+     */
     public function dailyProgress(User $user): array
     {
         $today = now()->toDateString();
@@ -23,6 +27,9 @@ class FocusStats
         ];
     }
 
+    /**
+     * @return array{count: int, change_percent: int}
+     */
     public function weeklyCompleted(User $user): array
     {
         $count = $this->completedBetween($user, now()->startOfWeek(), now()->endOfWeek());
@@ -55,7 +62,7 @@ class FocusStats
         return $best;
     }
 
-    private function completedBetween(User $user, $from, $to): int
+    private function completedBetween(User $user, CarbonInterface $from, CarbonInterface $to): int
     {
         return $user->tasks()->where('status', 'completed')->whereBetween('completed_at', [$from, $to])->count();
     }

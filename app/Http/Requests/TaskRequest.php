@@ -7,6 +7,9 @@ use Illuminate\Validation\Rule;
 
 class TaskRequest extends FormRequest
 {
+    /**
+     * @return array<string, array<int, mixed>>
+     */
     public function rules(): array
     {
         return [

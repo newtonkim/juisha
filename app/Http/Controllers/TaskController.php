@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
-use Illuminate\Http\{RedirectResponse, Request};
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     public function store(TaskRequest $request): RedirectResponse
     {
         $request->user()->tasks()->create($request->validated());
+
         return back();
     }
 
@@ -18,6 +20,7 @@ class TaskController extends Controller
     {
         $this->ensureOwner($request, $task);
         $task->update($request->validated());
+
         return back();
     }
 
@@ -27,6 +30,7 @@ class TaskController extends Controller
         $task->isCompleted()
             ? $task->update(['status' => 'pending', 'completed_at' => null])
             : $task->update(['status' => 'completed', 'completed_at' => now()]);
+
         return back();
     }
 
@@ -34,6 +38,7 @@ class TaskController extends Controller
     {
         $this->ensureOwner($request, $task);
         $task->delete();
+
         return back();
     }
 

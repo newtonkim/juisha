@@ -1,6 +1,9 @@
 <?php
 
-use App\Models\{Category, FocusSession, Task, User};
+use App\Models\Category;
+use App\Models\FocusSession;
+use App\Models\Task;
+use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
 test('history lists completed tasks with focused seconds and stats', function () {

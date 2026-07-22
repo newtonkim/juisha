@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Inertia\{Inertia, Response};
+use Inertia\Inertia;
+use Inertia\Response;
 
 class FocusController extends Controller
 {
