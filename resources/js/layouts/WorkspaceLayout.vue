@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
+import JulishMark from '@/components/focusflow/JulishMark.vue';
 import MaterialIcon from '@/components/focusflow/MaterialIcon.vue';
 
 defineProps<{ title?: string }>();
@@ -25,15 +26,15 @@ const nav = [
             <div>
                 <div class="mb-6 flex items-center gap-2 px-2">
                     <div
-                        class="flex size-8 items-center justify-center rounded-lg bg-primary-fx text-on-primary-fx"
+                        class="flex size-8 items-center justify-center rounded-lg bg-primary-fx"
                     >
-                        <MaterialIcon name="target" />
+                        <JulishMark class="size-6" />
                     </div>
                     <div>
                         <p
                             class="font-display text-base leading-tight font-bold"
                         >
-                            Focus Workspace
+                            Julish
                         </p>
                         <p
                             class="font-mono text-[10px] tracking-widest text-on-surface-variant uppercase"

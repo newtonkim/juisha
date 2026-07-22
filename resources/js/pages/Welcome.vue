@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
+import JulishMark from '@/components/focusflow/JulishMark.vue';
 import MaterialIcon from '@/components/focusflow/MaterialIcon.vue';
 import { dashboard, login, register } from '@/routes';
 
@@ -48,7 +49,7 @@ const proof = [
 </script>
 
 <template>
-    <Head title="FocusFlow — Deep work, on purpose" />
+    <Head title="Julish — Deep work, on purpose" />
 
     <div class="min-h-screen bg-surface font-sans text-on-surface antialiased">
         <!-- ======= HERO (dark forest) ======= -->
@@ -100,13 +101,17 @@ const proof = [
                     style="--d: 0ms"
                 >
                     <span
-                        class="flex size-9 items-center justify-center rounded-xl bg-secondary-container-fx text-primary-fx"
+                        class="flex size-9 items-center justify-center rounded-xl bg-secondary-container-fx"
                     >
-                        <MaterialIcon name="target" fill />
+                        <JulishMark
+                            class="size-7"
+                            fill="#012d1d"
+                            check="#a0f4c8"
+                        />
                     </span>
                     <span
                         class="font-display text-lg font-extrabold tracking-tight"
-                        >FocusFlow</span
+                        >Julish</span
                     >
                 </div>
                 <nav
@@ -164,8 +169,8 @@ const proof = [
                         class="ff-reveal mt-6 max-w-md text-lg leading-relaxed text-on-primary-container-fx"
                         style="--d: 300ms"
                     >
-                        FocusFlow turns your to-do list into timed focus
-                        sessions — so progress is something you
+                        Julish turns your to-do list into timed focus sessions —
+                        so progress is something you
                         <em class="font-medium text-on-primary-fx not-italic"
                             >measure</em
                         >, not something you hope for.
@@ -286,7 +291,7 @@ const proof = [
             <p
                 class="font-mono text-[11px] tracking-[0.24em] text-secondary-fx uppercase"
             >
-                Why FocusFlow
+                Why Julish
             </p>
             <h2
                 class="mt-3 max-w-xl font-display text-3xl font-extrabold tracking-tight text-balance sm:text-4xl"
@@ -406,14 +411,10 @@ const proof = [
                 class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-white/10 px-6 py-7 lg:px-8"
             >
                 <div class="flex items-center gap-2">
-                    <MaterialIcon
-                        name="target"
-                        fill
-                        class="!text-lg text-secondary-container-fx"
-                    />
+                    <JulishMark class="size-5" fill="#a0f4c8" check="#012d1d" />
                     <span
                         class="font-display text-sm font-bold text-on-primary-fx"
-                        >FocusFlow</span
+                        >Julish</span
                     >
                 </div>
                 <p class="font-mono text-[10px] tracking-[0.2em] uppercase">

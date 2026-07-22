@@ -34,6 +34,20 @@
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+        {{-- Social sharing / link previews --}}
+        <meta property="og:site_name" content="{{ config('app.name') }}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{ config('app.name') }} — Deep work, on purpose">
+        <meta property="og:description" content="Turn your to-do list into timed focus sessions. Measure progress — don't hope for it.">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:image" content="{{ url('/og-image.png') }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ config('app.name') }} — Deep work, on purpose">
+        <meta name="twitter:description" content="Turn your to-do list into timed focus sessions. Measure progress — don't hope for it.">
+        <meta name="twitter:image" content="{{ url('/og-image.png') }}">
+
         @fonts
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
