@@ -2,6 +2,7 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import JulishMark from '@/components/focusflow/JulishMark.vue';
 import MaterialIcon from '@/components/focusflow/MaterialIcon.vue';
+import { Toaster } from '@/components/ui/sonner';
 
 defineProps<{ title?: string }>();
 const page = usePage();
@@ -93,5 +94,6 @@ const nav = [
             </header>
             <div class="p-8 pt-6"><slot /></div>
         </main>
+        <Toaster />
     </div>
 </template>
